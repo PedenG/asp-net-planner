@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import moment = require('moment');
+
 
 @Component({
   selector: 'app-add-calendar',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-calendar.component.css']
 })
 export class AddCalendarComponent implements OnInit {
-
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit() {
   }
