@@ -27,12 +27,13 @@ namespace planner.Models
 
         public Evenement()
         {
-            Evenement.EnoyerEvenement(new Evenement());
+            DateHeureCreation = DateTime.Now;
+            //Evenement.EnoyerEvenement(new Evenement());
         }
 
         public static List<Evenement> GetEvents()
         {
-            return new List<Evenement>();
+            return new List<Evenement>() {new Evenement() {Titre="TOTO" } , new Evenement() { Titre = "TITI" } };
         }
         public static void EnoyerEvenement(Evenement e)
         {

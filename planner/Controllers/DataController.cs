@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace planner.Controllers
 {
     [ApiController]
@@ -14,9 +14,18 @@ namespace planner.Controllers
     {
         // GET api/fdp
         [HttpGet("Events")]
-        public string Get(string alias)
+        [Produces("application/json")]
+        public object Get()
         {
-            return Evenement.GetEvents().ToString();
+            var listEvent = Evenement.GetEvents();
+            return listEvent;
+        }
+
+        [HttpGet("Events/{titre}")]
+        [Produces("application/json")]
+        public object Event(string titre)
+        {
+            return Evenement.GetEvents().Where(x => x.Titre == titre).ToList();
         }
     }
 }
