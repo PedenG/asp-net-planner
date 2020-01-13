@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using planner.Models;
 
 namespace planner
 {
@@ -20,5 +22,20 @@ namespace planner
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+    }
+
+    public class AspDbContext : DbContext
+    {
+        public AspDbContext(DbContextOptions<AspDbContext> options) : base(options)
+        {
+
+        }
+        public DbSet<Organisateur> Organisateurs { get; set; }
+        public DbSet<Evenement> Evenements { get; set; }
+        public DbSet<Visisteur> Visisteurs { get; set; }
+        public AspDbContext()
+        {
+
+        }
     }
 }

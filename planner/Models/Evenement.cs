@@ -1,5 +1,4 @@
-﻿using chatbox.Ressource;
-using planner.Ressource;
+﻿using planner.Ressource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +27,17 @@ namespace planner.Models
 
         public Evenement()
         {
-
+            Evenement.EnoyerEvenement(new Evenement());
         }
 
-        public void EnoyerEvenement(Evenement e)
+        public static List<Evenement> GetEvents()
         {
-            ApiHelper helper = ApiHelper.Instance("localhost");
-            helper.Post(e);
+            return new List<Evenement>();
+        }
+        public static void EnoyerEvenement(Evenement e)
+        {
+            DatabaseHelper dbHelper = DatabaseHelper.Instance("localhost");
+            dbHelper.Inserer(e);
         }
     }
 }

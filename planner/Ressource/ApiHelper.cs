@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace planner.Ressource
 {
-    public class ApiHelper
+    public class DatabaseHelper
     {
         private string ApiUrl { get; set; }
 
-        private ApiHelper()
+        private DatabaseHelper()
         {
 
         }
 
-        public static ApiHelper Instance(string api_url)
+        public static DatabaseHelper Instance(string api_url)
         {
-            ApiHelper helper = new ApiHelper
+            DatabaseHelper helper = new DatabaseHelper
             {
                 ApiUrl = "https://"+api_url+"/"
             };
@@ -28,12 +28,20 @@ namespace planner.Ressource
 
         }
 
-        public void Post(object o)
+        public void Supprimer(object o)
+        {
+
+        }
+        public void Inserer(object o)
         {
             string url = ApiUrl+"/POST/"+o.GetType().Name;
         }
 
-        public void Get(object o)
+        public void LireUnique(object o)
+        {
+            
+        }
+        public void LireList(object o)
         {
             string url = ApiUrl + "/Get/" + o.GetType().Name;
         }
