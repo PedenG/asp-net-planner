@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import moment = require('moment');
+
 
 @Component({
   selector: 'app-add-calendar',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCalendarComponent implements OnInit {
 
-  constructor() { }
+  private listDays = [];
+  private numWeek = 1;
+  constructor() {
+    
+   }
 
   ngOnInit() {
+    this.getListOfDayByWeekNumber();
+  }
+
+  private getListOfDayByWeekNumber(){
+    this.numWeek = moment().isoWeek();
+
+    
   }
 
 }
