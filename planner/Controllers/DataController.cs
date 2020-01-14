@@ -49,7 +49,7 @@ namespace planner.Controllers
             return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
         }
         
-        [HttpGet("Events/add")]
+        [HttpPut("Events/add")]
         [Produces("application/json")]
         public string AddEvent(string titre)
         {
