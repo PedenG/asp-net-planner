@@ -40,6 +40,8 @@ namespace planner.Models
         }
         public static Evenement ModifEvent(Evenement e)
         {
+            AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
+            context.Update(e); 
             return e;
         }
         public static void EnoyerEvenement(Evenement e)
