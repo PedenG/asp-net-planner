@@ -34,20 +34,18 @@ namespace planner.Models
             DateHeureCreation = DateTime.Now;
             //Evenement.EnoyerEvenement(new Evenement());
         }
-
         public static List<Evenement> GetEvents()
         {
             return new List<Evenement>() {new Evenement() {Titre="TOTO" } , new Evenement() { Titre = "TITI" } };
         }
         public static Evenement ModifEvent(Evenement e)
         {
-
             return e;
         }
         public static void EnoyerEvenement(Evenement e)
         {
-            DatabaseHelper dbHelper = DatabaseHelper.Instance("localhost");
-            dbHelper.Inserer(e);
+            AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
+            context.Add(e);
         }
     }
 }
