@@ -12,6 +12,9 @@ namespace planner.Controllers
     [Produces("application/json")]
     public class DataController : ControllerBase
     {
+        //===========================================================================================
+        //Evenement
+        //==========================================================================================
         // GET api/fdp
         [HttpGet("Events")]
         [Produces("application/json")]
@@ -26,6 +29,23 @@ namespace planner.Controllers
         public object Event(string titre)
         {
             return Evenement.GetEvents().Where(x => x.Titre == titre).ToList();
+        }
+
+        [HttpGet("Events/del/{titre}")]
+        [Produces("application/json")]
+        public object DelEvent(string titre)
+        {
+            var list = Evenement.GetEvents();
+            list.RemoveAll(x => x.Titre.ToUpper() == titre.ToUpper());
+            return list;
+        }
+        
+        [HttpGet("Events/modif/{titre}")]
+        [Produces("application/json")]
+        public object ModifEvent(string titre)
+        {
+            var evenemnt = Evenement.GetEvents().Where(x => x.Titre == titre).ToList()[0];
+            return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
         }
     }
 }
