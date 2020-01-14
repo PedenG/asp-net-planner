@@ -3,11 +3,15 @@
         <div class="form">
             <p>
                 <label for="titre">Titre de l'événement</label>
-                <input type="text" name="titre">
+                <input type="text" name="titre" [(ngModel)]="titre">
             </p>
             <p>
                 <label for="description">Description de l'événement</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="description"></textarea>
+            </p>
+            <p>
+                <label for="dateEv">Date de l'événement</label>
+                <input type="date" [(ngModel)]="dateEvent" name="dateEv">
             </p>
             <p>
                 <label for="postal">Code Postal</label>
@@ -19,12 +23,13 @@
             </p>
             <p>
                 <label for="adresse">Adresse</label>
-                <input type="text" name="adresse" id="tags">
+                <input type="text" name="adresse" id="adresse" [(ngModel)]="adresse">
             </p>
             <p>
                 <label for="tag">Tags</label>
-                <input type="text" name="tags" id="tags">
+                <input type="text" name="tags" id="tags" [(ngModel)]="tag">
             </p>
+            <button (click)="addData()">Ajouter</button>
         </div>
     </fieldset>
 </body>
