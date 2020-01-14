@@ -9,13 +9,22 @@ namespace planner.Models
     public class Visisteur : User
     {
         [Key]
-        public int Id { get; set; }
+        public int IdVisiteur { get; set; }
+        public string Login { get; set; }
+
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Email { get; set; }
+        public string Tel { get; set; }
+        public string Port { get; set; }
+
+        public DateTime DateInscription { get; set; }
         public List<Evenement> Evenements { get; set; }
         //public ICollection<string> Themes { get; set; }
 
         public Visisteur()
         {
-
+            
         }
     }
 }

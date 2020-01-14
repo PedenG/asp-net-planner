@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using planner;
 
 namespace planner.Migrations
 {
     [DbContext(typeof(AspDbContext))]
-    partial class AspDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200114095518_UpdateUsers")]
+    partial class UpdateUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,13 +45,13 @@ namespace planner.Migrations
 
                     b.Property<string>("Ville");
 
-                    b.Property<int?>("VisisteurIdVisiteur");
+                    b.Property<int?>("VisisteurId");
 
                     b.HasKey("IdEvent");
 
                     b.HasIndex("OrganisateurIdOrga");
 
-                    b.HasIndex("VisisteurIdVisiteur");
+                    b.HasIndex("VisisteurId");
 
                     b.ToTable("Evenement");
                 });
@@ -83,7 +85,7 @@ namespace planner.Migrations
 
             modelBuilder.Entity("planner.Models.Visisteur", b =>
                 {
-                    b.Property<int>("IdVisiteur")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -101,7 +103,7 @@ namespace planner.Migrations
 
                     b.Property<string>("Tel");
 
-                    b.HasKey("IdVisiteur");
+                    b.HasKey("Id");
 
                     b.ToTable("Visisteur");
                 });
@@ -114,7 +116,7 @@ namespace planner.Migrations
 
                     b.HasOne("planner.Models.Visisteur")
                         .WithMany("Evenements")
-                        .HasForeignKey("VisisteurIdVisiteur");
+                        .HasForeignKey("VisisteurId");
                 });
 #pragma warning restore 612, 618
         }

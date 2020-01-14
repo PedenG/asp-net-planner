@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using planner;
 
 namespace planner.Migrations
 {
     [DbContext(typeof(AspDbContext))]
-    partial class AspDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200114095616_fixIdVisiteur")]
+    partial class fixIdVisiteur
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -19,7 +19,8 @@ namespace planner.Models
         public string Ville { get; set; }
         public string Cp { get; set; }
         public string Adresse { get; set; }
-        //public List<string> Tags { get; set; }
+        // tag1;tag2;tag3;...
+        public string Tags { get; set; }
 
 
 

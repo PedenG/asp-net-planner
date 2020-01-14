@@ -10,6 +10,15 @@ namespace planner.Models
     {
         [Key]
         public int IdOrga { get; set; }
+        public string Login { get; set; }
+
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Email { get; set; }
+        public string Tel { get; set; }
+        public string Port { get; set; }
+
+        public DateTime DateInscription { get; set; }
         public string NomOrganisation { get; set; }
         public List<Evenement> EvenementsOrganises{ get; set; }
 
