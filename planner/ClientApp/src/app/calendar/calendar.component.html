@@ -6,6 +6,10 @@
     </tr>
   </thead>
   <tbody>
-    
+    <tr *ngFor="let hours of listOfHours">
+      <p>{{ hours.name }}</p>
+      <td *ngFor="let date of listDays">
+      </td>
+    </tr>    
   </tbody>
 </table>

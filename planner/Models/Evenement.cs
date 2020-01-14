@@ -39,6 +39,11 @@ namespace planner.Models
         {
             return new List<Evenement>() {new Evenement() {Titre="TOTO" } , new Evenement() { Titre = "TITI" } };
         }
+        public static Evenement ModifEvent(Evenement e)
+        {
+
+            return e;
+        }
         public static void EnoyerEvenement(Evenement e)
         {
             DatabaseHelper dbHelper = DatabaseHelper.Instance("localhost");
