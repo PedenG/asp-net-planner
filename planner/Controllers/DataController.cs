@@ -27,35 +27,45 @@ namespace planner.Controllers
 
         [HttpGet("Events/{id}")]
         [Produces("application/json")]
-        public object Event(string titre)
+        public object Event(int id)
         {
-            return Evenement.GetEvents().Where(x => x.Titre.ToUpper() == titre.ToUpper()).ToList();
+            return Evenement.GetEvents().Where(x => x.IdEvent == id).ToList();
         }
 
         [HttpGet("Events/del/{id}")]
         [Produces("application/json")]
-        public object DelEvent(string titre)
+        public object DelEvent(int id)
         {
             var list = Evenement.GetEvents();
-            list.RemoveAll(x => x.Titre.ToUpper() == titre.ToUpper());
+            list.RemoveAll(x => x.IdEvent == id);
             return list;
         }
         
-        [HttpGet("Events/modif/{id}")]
+        [HttpPost("Events/modif")]
         [Produces("application/json")]
-        public object ModifEvent(string titre)
+        public object ModifEvent(int id)
         {
-            var evenemnt = Evenement.GetEvents().Where(x => x.Titre == titre).ToList()[0];
-            return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
+            using (var reader = new StreamReader(Request.Body))
+            {
+                var body = reader.ReadToEnd();
+                return Evenement.ModifEvent(JsonConvert.DeserializeObject<Evenement>(body));
+            }
         }
         
-        [HttpPut("Events/add")]
+        [HttpPost("Events/add")]
         [Produces("application/json")]
-        public string AddEvent(string titre)
+        public string AddEvent()
         {
             using(var reader = new StreamReader(Request.Body)){
                 var body = reader.ReadToEnd();
-                Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+                if (string.IsNullOrWhiteSpace(body))
+                {
+                    Evenement.EnoyerEvenement(new Evenement() {Titre="AddedEvent" });
+                }
+                else
+                {
+                    Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+                }
             }
             return "succes";
         }
