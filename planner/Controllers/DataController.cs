@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
 namespace planner.Controllers
 {
     [ApiController]
@@ -24,14 +25,14 @@ namespace planner.Controllers
             return listEvent;
         }
 
-        [HttpGet("Events/{titre}")]
+        [HttpGet("Events/{id}")]
         [Produces("application/json")]
         public object Event(string titre)
         {
             return Evenement.GetEvents().Where(x => x.Titre.ToUpper() == titre.ToUpper()).ToList();
         }
 
-        [HttpGet("Events/del/{titre}")]
+        [HttpGet("Events/del/{id}")]
         [Produces("application/json")]
         public object DelEvent(string titre)
         {
@@ -40,12 +41,23 @@ namespace planner.Controllers
             return list;
         }
         
-        [HttpGet("Events/modif/{titre}")]
+        [HttpGet("Events/modif/{id}")]
         [Produces("application/json")]
         public object ModifEvent(string titre)
         {
             var evenemnt = Evenement.GetEvents().Where(x => x.Titre == titre).ToList()[0];
             return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
+        }
+        
+        [HttpGet("Events/add")]
+        [Produces("application/json")]
+        public string AddEvent(string titre)
+        {
+            using(var reader = new StreamReader(Request.Body)){
+                var body = reader.ReadToEnd();
+                Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+            }
+            return "succes";
         }
     }
 }
