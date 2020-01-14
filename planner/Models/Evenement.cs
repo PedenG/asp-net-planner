@@ -1,6 +1,7 @@
 ﻿using planner.Ressource;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace planner.Models
 {
     public class Evenement
     {
+        [Key]
+        public int IdEvent { get; set; }
         public Organisateur Organisateur { get; set; }
         public string Titre { get; set; }
         public string Description { get; set; }
@@ -16,14 +19,14 @@ namespace planner.Models
         public string Ville { get; set; }
         public string Cp { get; set; }
         public string Adresse { get; set; }
-        public List<string> Tags { get; set; }
+        //public List<string> Tags { get; set; }
 
 
 
 
 
 
-        public List<string> Commentaires { get; set; }
+        //public List<string> Commentaires { get; set; }
 
         public Evenement()
         {

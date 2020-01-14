@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,8 +8,10 @@ namespace planner.Models
 {
     public class Visisteur : User
     {
+        [Key]
+        public int Id { get; set; }
         public List<Evenement> Evenements { get; set; }
-        public List<string> Themes { get; set; }
+        //public ICollection<string> Themes { get; set; }
 
         public Visisteur()
         {

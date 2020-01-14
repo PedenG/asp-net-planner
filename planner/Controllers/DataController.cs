@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace planner.Controllers
 {
     [ApiController]
-    [Route("api")]
+    [Route("API")]
     [Produces("application/json")]
     public class DataController : ControllerBase
     {
@@ -25,7 +25,8 @@ namespace planner.Controllers
         [Produces("application/json")]
         public object Event(string titre)
         {
-            return Evenement.GetEvents().Where(x => x.Titre == titre).ToList();
+            return Evenement.GetEvents().Where(x => x.Titre.ToUpper() == titre.ToUpper()).ToList();
         }
     }
 }
+
