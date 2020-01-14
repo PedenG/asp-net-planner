@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using planner.Ressource;
+
 namespace planner.Controllers
 {
     [ApiController]
@@ -56,18 +58,33 @@ namespace planner.Controllers
         [Produces("application/json")]
         public string AddEvent()
         {
-            using(var reader = new StreamReader(Request.Body)){
-                var body = reader.ReadToEnd();
-                if (string.IsNullOrWhiteSpace(body))
+            try
+            {
+                var body = GetBody();
+                if (!string.IsNullOrWhiteSpace(body))
                 {
-                    Evenement.EnoyerEvenement(new Evenement() {Titre="AddedEvent" });
+                    DatabaseHelper dbHelper = new DatabaseHelper();
+                    dbHelper.InsertObjToDB(JsonConvert.DeserializeObject<Evenement>(body));
+                    return "succes";
+
                 }
                 else
                 {
-                    Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+                    return "error";
                 }
             }
-            return "succes";
+            catch
+            {
+
+            }
+            return "error";
+        }
+        public string GetBody()
+        {
+            using (var reader = new StreamReader(Request.Body))
+            {
+                return reader.ReadToEnd();
+            }
         }
     }
 }
