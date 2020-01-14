@@ -41,12 +41,15 @@ namespace planner.Controllers
             return list;
         }
         
-        [HttpPost("Events/modif/{id}")]
+        [HttpPost("Events/modif")]
         [Produces("application/json")]
         public object ModifEvent(int id)
         {
-            var evenemnt = Evenement.GetEvents().Where(x => x.IdEvent == id).ToList()[0];
-            return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
+            using (var reader = new StreamReader(Request.Body))
+            {
+                var body = reader.ReadToEnd();
+                return Evenement.ModifEvent(JsonConvert.DeserializeObject<Evenement>(body));
+            }
         }
         
         [HttpPost("Events/add")]
@@ -55,7 +58,14 @@ namespace planner.Controllers
         {
             using(var reader = new StreamReader(Request.Body)){
                 var body = reader.ReadToEnd();
-                Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+                if (string.IsNullOrWhiteSpace(body))
+                {
+                    Evenement.EnoyerEvenement(new Evenement() {Titre="AddedEvent" });
+                }
+                else
+                {
+                    Evenement.EnoyerEvenement(JsonConvert.DeserializeObject<Evenement>(body));
+                }
             }
             return "succes";
         }

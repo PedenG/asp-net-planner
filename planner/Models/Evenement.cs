@@ -36,18 +36,21 @@ namespace planner.Models
         }
         public static List<Evenement> GetEvents()
         {
-            return new List<Evenement>() {new Evenement() {Titre="TOTO" } , new Evenement() { Titre = "TITI" } };
+            AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
+            return context.Evenements.ToList();
         }
         public static Evenement ModifEvent(Evenement e)
         {
             AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
-            context.Update(e); 
+            context.Update(e);
+            context.SaveChanges();
             return e;
         }
         public static void EnoyerEvenement(Evenement e)
         {
             AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
-            context.Add(e);
+            var test = context.Add(e);
+            context.SaveChanges();
         }
     }
 }
