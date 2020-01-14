@@ -58,4 +58,14 @@ export class CalendarComponent implements OnInit {
     }
     this.curentDate = moment(this.curentDate).format('YYYY-MM-DD');
   }
+
+  private decrementWeek(){
+    this.numWeek--;
+    this.getListOfDayByWeekNumber();
+  }
+
+  private incrementWeek(){
+    this.numWeek++;
+    this.getListOfDayByWeekNumber();
+  }
 }

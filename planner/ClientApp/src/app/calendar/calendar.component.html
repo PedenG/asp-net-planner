@@ -1,15 +1,21 @@
-<input type="number" [(ngModel)]="numWeek" (click)="getListOfDayByWeekNumber()">
-<table>
-  <thead>
-    <tr>
-      <th *ngFor="let date of listDays">{{date}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let hours of listOfHours">
-      <p>{{ hours.name }}</p>
-      <td *ngFor="let date of listDays">
-      </td>
-    </tr>    
-  </tbody>
-</table>
+<div class="week">
+  <span class="glyphicon glyphicon-chevron-left" (click)="decrementWeek()"></span>
+  <input type="number" [(ngModel)]="numWeek" (click)="getListOfDayByWeekNumber()" max="52" min="1">
+  <span class="glyphicon glyphicon-chevron-right" (click)="incrementWeek()"></span>
+</div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let date of listDays">{{date}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hours of listOfHours">
+        <td *ngFor="let date of listDays">
+            <p>{{ hours.name }}</p>
+        </td>
+      </tr>    
+    </tbody>
+  </table>
+</div>
