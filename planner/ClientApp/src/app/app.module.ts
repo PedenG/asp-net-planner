@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ListCalendarComponent } from './list-calendar/list-calendar.component';
 import { AddCalendarComponent } from './add-calendar/add-calendar.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddCalendarComponent } from './add-calendar/add-calendar.component';
     NavMenuComponent,
     CalendarComponent,
     ListCalendarComponent,
-    AddCalendarComponent
+    AddCalendarComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
