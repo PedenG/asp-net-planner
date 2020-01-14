@@ -27,5 +27,10 @@ namespace planner.Models
         {
 
         }
+        public static List<Organisateur> GetOrgas()
+        {
+            AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
+            return context.Organisateurs.ToList();
+        }
     }
 }

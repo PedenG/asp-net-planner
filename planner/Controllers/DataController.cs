@@ -21,26 +21,26 @@ namespace planner.Controllers
         // GET api/fdp
         [HttpGet("Events")]
         [Produces("application/json")]
-        public object Get()
+        public object GetEvents()
         {
-            var listEvent = Evenement.GetEvents();
-            return listEvent;
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.GetObjToDB(new Evenement());
         }
 
         [HttpGet("Events/{id}")]
         [Produces("application/json")]
         public object Event(int id)
         {
-            return Evenement.GetEvents().Where(x => x.IdEvent == id).ToList();
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.GetOneObjFromDB<Evenement>(id);
         }
 
         [HttpGet("Events/del/{id}")]
         [Produces("application/json")]
         public object DelEvent(int id)
         {
-            var list = Evenement.GetEvents();
-            list.RemoveAll(x => x.IdEvent == id);
-            return list;
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.RemoveObjToDB(dbHelper.GetOneObjFromDB<Evenement>(id));
         }
         
         [HttpPost("Events/modif")]
@@ -50,7 +50,11 @@ namespace planner.Controllers
             using (var reader = new StreamReader(Request.Body))
             {
                 var body = reader.ReadToEnd();
-                return Evenement.ModifEvent(JsonConvert.DeserializeObject<Evenement>(body));
+                DatabaseHelper dbHelper = new DatabaseHelper();
+                if (string.IsNullOrWhiteSpace(body))
+                    return dbHelper.ModifObjToDB(dbHelper.GetOneObjFromDB<Evenement>(id));
+                else
+                    return dbHelper.ModifObjToDB(JsonConvert.DeserializeObject(body));
             }
         }
         
@@ -64,7 +68,76 @@ namespace planner.Controllers
                 if (!string.IsNullOrWhiteSpace(body))
                 {
                     DatabaseHelper dbHelper = new DatabaseHelper();
-                    dbHelper.InsertObjToDB(JsonConvert.DeserializeObject<Evenement>(body));
+                    dbHelper.InsertObjToDB<Evenement>(JsonConvert.DeserializeObject<Evenement>(body));
+                    return "succes";
+
+                }
+                else
+                {
+                    return "error";
+                }
+            }
+            catch
+            {
+
+            }
+            return "error";
+        }
+
+        //===========================================================================================
+        //Organisateur
+        //==========================================================================================
+        // GET api/fdp
+        [HttpGet("Orgas")]
+        [Produces("application/json")]
+        public object GetOrga()
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.GetObjToDB(new Organisateur());
+        }
+
+        [HttpGet("Orgas/{id}")]
+        [Produces("application/json")]
+        public object Orga(int id)
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.GetOneObjFromDB<Organisateur>(id);
+        }
+
+        [HttpGet("Orgas/del/{id}")]
+        [Produces("application/json")]
+        public object DelOrga(int id)
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return dbHelper.RemoveObjToDB(dbHelper.GetOneObjFromDB<Organisateur>(id));
+        }
+        
+        [HttpPost("Orgas/modif")]
+        [Produces("application/json")]
+        public object ModifOrga(int id)
+        {
+            using (var reader = new StreamReader(Request.Body))
+            {
+                var body = reader.ReadToEnd();
+                DatabaseHelper dbHelper = new DatabaseHelper();
+                if (string.IsNullOrWhiteSpace(body))
+                    return dbHelper.ModifObjToDB(dbHelper.GetOneObjFromDB<Organisateur>(id));
+                else
+                    return dbHelper.ModifObjToDB(JsonConvert.DeserializeObject(body));
+            }
+        }
+        
+        [HttpPost("Orgas/add")]
+        [Produces("application/json")]
+        public string AddOrga()
+        {
+            try
+            {
+                var body = GetBody();
+                if (!string.IsNullOrWhiteSpace(body))
+                {
+                    DatabaseHelper dbHelper = new DatabaseHelper();
+                    dbHelper.InsertObjToDB<Organisateur>(JsonConvert.DeserializeObject<Organisateur>(body));
                     return "succes";
 
                 }
