@@ -139,7 +139,6 @@ namespace planner.Controllers
                     DatabaseHelper dbHelper = new DatabaseHelper();
                     dbHelper.InsertObjToDB<Organisateur>(JsonConvert.DeserializeObject<Organisateur>(body));
                     return "succes";
-
                 }
                 else
                 {
