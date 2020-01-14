@@ -49,9 +49,9 @@ namespace planner.Controllers
             return Evenement.ModifEvent(evenemnt) != null ? Evenement.ModifEvent(evenemnt) : new Evenement();
         }
         
-        [HttpPut("Events/add")]
+        [HttpPost("Events/add")]
         [Produces("application/json")]
-        public string AddEvent(string titre)
+        public string AddEvent()
         {
             using(var reader = new StreamReader(Request.Body)){
                 var body = reader.ReadToEnd();
