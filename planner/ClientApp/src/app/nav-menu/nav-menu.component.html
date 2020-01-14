@@ -27,6 +27,11 @@
                         <span class='glyphicon glyphicon-plus'></span>Ajouter un événement
                     </a>
                 </li>
+                <li [routerLinkActive]='["link-active"]'>
+                    <a [routerLink]='["/user"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-plus'></span>Ajouter un organisateur
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

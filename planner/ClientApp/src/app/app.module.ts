@@ -1,3 +1,5 @@
+import { UserService } from './service/user.service';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,14 +25,16 @@ import { UserComponent } from './user/user.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: CalendarComponent, pathMatch: 'full' },
       { path: 'list', component: ListCalendarComponent },
       { path: 'add', component: AddCalendarComponent },
+      { path: 'user', component: UserComponent },
     ])
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
