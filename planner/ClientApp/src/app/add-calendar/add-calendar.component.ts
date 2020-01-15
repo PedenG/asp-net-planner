@@ -43,12 +43,11 @@ export class AddCalendarComponent implements OnInit {
       "DateHeureCreation" : moment().format('YYYY-MM-DD'),
       "DateHeureEvenement" : this.dateEvent,
       "Ville": this.ville,
-      "Cp": this.codePostal,
-
+      "Cp" : this.codePostal,
       "Adresse" : this.adresse,
       "Tags" : this.tag
     }
-    this.http.post("http://localhost/api/Events/add", this.json).subscribe(data =>{
+    this.http.post("http://localhost:51764/api/Events/add", this.json).subscribe(data =>{
       console.log(data);
     });
   }

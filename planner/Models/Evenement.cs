@@ -34,7 +34,7 @@ namespace planner.Models
             DateHeureCreation = DateTime.Now;
             //Evenement.EnoyerEvenement(new Evenement());
         }
-        public static List<Evenement> GetEvents(object o)
+        public static List<Evenement> GetEvents()
         {
             AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
             return context.Evenements.ToList();
