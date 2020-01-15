@@ -48,7 +48,7 @@ namespace planner
         {
             var optionsBuilder = new DbContextOptionsBuilder<AspDbContext>();
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=AspCore-Evenement-DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
+            
             return new AspDbContext(optionsBuilder.Options);
         }
     }

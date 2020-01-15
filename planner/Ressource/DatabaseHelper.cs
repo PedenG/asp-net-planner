@@ -29,7 +29,7 @@ namespace planner.Ressource
             switch (default(T).GetType().Name)
             {
                 case ("Evenement"):
-                    return Evenement.GetEvents().Where(x => x.IdEvent == id);
+                    return Evenement.GetEvents(new Evenement()).Where(x => x.IdEvent == id);
                 case ("Organisateur"):
                    return Organisateur.GetOrgas();
                 case ("Visiteur"):
@@ -43,7 +43,7 @@ namespace planner.Ressource
             switch (o.GetType().Name)
             {
                 case ("Evenement"):
-                    return Evenement.GetEvents();
+                    return Evenement.GetEvents(new Evenement());
                 case ("Organisateur"):
                    return Organisateur.GetOrgas();
                 case ("Visiteur"):
