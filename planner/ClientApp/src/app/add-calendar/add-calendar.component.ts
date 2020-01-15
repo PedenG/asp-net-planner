@@ -1,3 +1,4 @@
+import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import moment = require('moment');
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +21,7 @@ export class AddCalendarComponent implements OnInit {
   private tag = "";
   private json;
   private dateEvent = moment().format('YYYY-MM-DD');
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public loginService:LoginService) {
     
    }
 

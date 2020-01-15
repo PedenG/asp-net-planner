@@ -1,3 +1,4 @@
+import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,10 +10,12 @@ import { HttpClient } from '@angular/common/http';
 export class ListCalendarComponent implements OnInit {
 
   private listeEvent;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, public loginService:LoginService) { }
 
   ngOnInit() {
     this.getEvents();
+    this.loginService.loadUser();
+   
   }
 
   private getEvents(){
@@ -20,5 +23,6 @@ export class ListCalendarComponent implements OnInit {
       this.listeEvent = data;
     });
   }
+ 
 
 }

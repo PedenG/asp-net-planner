@@ -1,3 +1,4 @@
+import { LoginService } from './service/login.service';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ListCalendarComponent } from './list-calendar/list-calendar.component';
 import { AddCalendarComponent } from './add-calendar/add-calendar.component';
 import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { UserComponent } from './user/user.component';
     CalendarComponent,
     ListCalendarComponent,
     AddCalendarComponent,
-    UserComponent
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,13 +31,14 @@ import { UserComponent } from './user/user.component';
     HttpModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: CalendarComponent, pathMatch: 'full' },
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'list', component: ListCalendarComponent },
       { path: 'add', component: AddCalendarComponent },
       { path: 'user', component: UserComponent },
+      { path: 'Calendar', component:CalendarComponent },
     ])
   ],
-  providers: [UserService],
+  providers: [UserService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

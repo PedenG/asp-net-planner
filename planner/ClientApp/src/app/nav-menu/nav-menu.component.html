@@ -13,23 +13,32 @@
         <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
+                    <a [routerLink]='["/Calendar"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-calendar'></span>Calendrier
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/list"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-list'></span>Liste des événements
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/add"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-plus'></span>Ajouter un événement
-                    </a>
-                </li>
+                <div *ngIf="loginService.isAdmin()">
+                    <li [routerLinkActive]='["link-active"]'>
+                        <a [routerLink]='["/list"]' (click)='collapse()'>
+                            <span class='glyphicon glyphicon-list'></span>Liste des événements
+                        </a>
+                    </li>
+                    <li [routerLinkActive]='["link-active"]'>
+                        <a [routerLink]='["/add"]' (click)='collapse()'>
+                            <span class='glyphicon glyphicon-plus'></span>Ajouter un événement
+                        </a>
+                    </li>
+                    
+                   
+                </div>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/user"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-plus'></span>Ajouter un organisateur
+                    </a>
+                </li>
+                <li>
+                    <a class="btn" (click)="onLogout()">
+                        <span class='glyphicon glyphicon-log-out'></span>
                     </a>
                 </li>
             </ul>
