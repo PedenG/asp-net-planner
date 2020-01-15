@@ -9,4 +9,6 @@
     Email:String="";
     Tel:String="";
     Port :String="";
+    DateInscription:Date=new Date();
+    NomOrganisation:String="";
 }
