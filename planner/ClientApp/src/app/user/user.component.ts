@@ -1,3 +1,4 @@
+import { LoginService } from './../service/login.service';
 import { UserService } from './../service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/model.user';
@@ -9,7 +10,7 @@ import { User } from '../../model/model.user';
 })
 export class UserComponent implements OnInit {
  user:User=new User();
-  constructor(private userService :UserService) { }
+  constructor(private userService :UserService, public loginService:LoginService) { }
 
   ngOnInit() {
    

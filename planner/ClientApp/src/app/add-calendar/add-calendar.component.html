@@ -1,35 +1,41 @@
 <body>
-    <fieldset>
-        <div class="form">
-            <p>
-                <label for="titre">Titre de l'événement</label>
-                <input type="text" name="titre" [(ngModel)]="titre">
-            </p>
-            <p>
-                <label for="description">Description de l'événement</label>
-                <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="description"></textarea>
-            </p>
-            <p>
-                <label for="dateEv">Date de l'événement</label>
-                <input type="date" [(ngModel)]="dateEvent" name="dateEv">
-            </p>
-            <p>
-                <label for="postal">Code Postal</label>
-                <input type="text" (change)="search()" name="postal" [(ngModel)]="codePostal">
-            </p>
-            <p>
-                <label for="ville">Ville</label>
-                <input type="text" name="ville" readonly=true [(ngModel)]="ville">
-            </p>
-            <p>
-                <label for="adresse">Adresse</label>
-                <input type="text" name="adresse" id="adresse" [(ngModel)]="adresse">
-            </p>
-            <p>
-                <label for="tag">Tags</label>
-                <input type="text" name="tags" id="tags" [(ngModel)]="tag">
-            </p>
-            <button (click)="addData()">Ajouter</button>
+    <fieldset *ngIf="loginService.isAdmin()">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Ajouter un événement</div>
+            <div  class="panel-body">
+            <div class="form-group">
+                <p>
+                    <label for="titre" class="control-label">Titre de l'événement</label>
+                    <input type="text" name="titre" [(ngModel)]="titre" class="form-control">
+                </p>
+                <p>
+                    <label for="description" class="control-label">Description de l'événement</label>
+                    <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="description"
+                        class="form-control"></textarea>
+                </p>
+                <p>
+                    <label for="dateEv" class="control-label">Date de l'événement</label>
+                    <input type="date" [(ngModel)]="dateEvent" name="dateEv" class="form-control">
+                </p>
+                <p>
+                    <label for="postal" class="control-label">Code Postal</label>
+                    <input type="text" (change)="search()" name="postal" [(ngModel)]="codePostal" class="form-control">
+                </p>
+                <p>
+                    <label for="ville" class="control-label">Ville</label>
+                    <input type="text" name="ville" readonly=true [(ngModel)]="ville" class="form-control">
+                </p>
+                <p>
+                    <label for="adresse" class="control-label">Adresse</label>
+                    <input type="text" name="adresse" id="adresse" [(ngModel)]="adresse" class="form-control">
+                </p>
+                <p>
+                    <label for="tag" class="control-label">Tags</label>
+                    <input type="text" name="tags" id="tags" [(ngModel)]="tag" class="form-control">
+                </p>
+                <button (click)="addData()" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
         </div>
     </fieldset>
 </body>
