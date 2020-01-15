@@ -16,8 +16,10 @@ export class UserComponent implements OnInit {
   }
   AddUser(){
     console.log(this.user);
+    const userJson = JSON.stringify(this.user);
     this.userService.insertUser(this.user)
     .subscribe(data=>{
+      console.log("envoyées");
       console.log(data);
     }, err=>{
       console.log(err);
