@@ -26,14 +26,14 @@ namespace planner.Ressource
         }
         public object GetOneObjFromDB<T>(int  id)
         {
-            switch (default(T).GetType().Name)
+            switch (typeof(T).Name)
             {
                 case ("Evenement"):
                     return Evenement.GetEvents().Where(x => x.IdEvent == id);
                 case ("Organisateur"):
-                   return Organisateur.GetOrgas();
+                   return Organisateur.GetOrgas().Where(x => x.IdOrga == id);
                 case ("Visiteur"):
-                    return Visisteur.GetVisits();
+                    return Visisteur.GetVisits().Where(x => x.IdVisiteur == id);
                 default:
                     return null;
             }

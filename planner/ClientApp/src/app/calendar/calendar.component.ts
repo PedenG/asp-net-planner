@@ -1,3 +1,4 @@
+import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import moment = require('moment');
 
@@ -42,12 +43,13 @@ export class CalendarComponent implements OnInit {
   },{
     name : "22h00 - 24H00",
   }]
-  constructor() {
+  constructor(public loginService:LoginService) {
     
    }
 
   ngOnInit() {
     this.getListOfDayByWeekNumber();
+    this.loginService.loadUser(); 
   }
 
   private getListOfDayByWeekNumber(){

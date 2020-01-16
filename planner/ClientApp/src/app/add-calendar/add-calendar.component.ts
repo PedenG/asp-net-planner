@@ -1,3 +1,6 @@
+import { Addcalander } from './../../model/model.add-calander';
+import { AddCalandarService } from './../service/add-calandar.service';
+import { Organisateur } from './../../model/model.organisateur';
 import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
 import moment = require('moment');
@@ -10,47 +13,43 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add-calendar.component.css']
 })
 export class AddCalendarComponent implements OnInit {
-
+  organisateur: Organisateur = new Organisateur();
+  addCalandar:Addcalander=new Addcalander();
   private listeVille;
   private url = "https://geo.api.gouv.fr/";
-  private codePostal = "";
-  private ville = "";
-  private titre = "";
-  private description = "";
-  private adresse = "";
-  private tag = "";
-  private json;
-  private dateEvent = moment().format('YYYY-MM-DD');
-  constructor(private http: HttpClient, public loginService:LoginService) {
-    
-   }
+  
+
+  constructor(private http: HttpClient, public loginService: LoginService, private addCalandarService:AddCalandarService) {
+
+  }
 
   ngOnInit() {
+    this.loginService.loadUser();   
+    this.loginService.getUser(this.loginService.userAuthentificated.id)
+    .subscribe(data => {
+      this.organisateur = data ['0'];
+      console.log(this.addCalandar.organisateur);
+    }, err => {
+      console.log(err);
+    });
   }
 
-  private search(){
-    this.http.get(this.url + "communes?codePostal=" + this.codePostal).subscribe( data => {
+  private search() {
+    this.http.get(this.url + "communes?codePostal=" + this.addCalandar.cp).subscribe(data => {
       this.listeVille = data;
-      this.ville = this.listeVille[0].nom;
+      this.addCalandar.ville = this.listeVille[0].nom;
     });
-   
+
   }
 
-  private addData(){
-    this.json = {
-      "Organisateur" : 0,
-      "Titre" : this.titre,
-      "Description" : this.description,
-      "DateHeureCreation" : moment().format('YYYY-MM-DD'),
-      "DateHeureEvenement" : this.dateEvent,
-      "Ville": this.ville,
-      "Cp" : this.codePostal,
-      "Adresse" : this.adresse,
-      "Tags" : this.tag
-    }
-    this.http.post("http://localhost:51764/api/Events/add", this.json).subscribe(data =>{
+  private addData() {
+   this.addCalandarService.insertCalander( this.addCalandar)
+    .subscribe(data=>{
       console.log(data);
-    });
+    }, err=>{
+      console.log(err);
+    })
   }
+  
 
 }

@@ -1,22 +1,24 @@
+import { HttpClient } from '@angular/common/http';
+import { Organisateur } from './../../model/model.organisateur';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LoginService {
   private users = [
-    {username: 'admin', password: '123', roles:['ADMIN','USER']},
-    {username: 'user1', password: '123', roles:['USER']},
-    {username: 'user2', password: '123', roles:['USER']}
+    {id:5, username: 'admin', password: '123', roles:['ADMIN','USER']},
+    {id:6, username: 'user1', password: '123', roles:['USER']},
+    {id:7, username: 'user2', password: '123', roles:['USER']}
   ]
   public isAuthentificated: boolean;
   public userAuthentificated;
   public token;
-  constructor() { }
+  constructor(private http:HttpClient) { }
   public login(username: string, password: string) {
     let user;
     this.users.forEach(u => {
       if (u.username == username && u.password == password) {
         user = u;
-        this.token=btoa(JSON.stringify({username:u.username,roles:u.roles}));
+        this.token=btoa(JSON.stringify({id:u.id,username:u.username,roles:u.roles}));
       }
     });
     if (user) {
@@ -46,7 +48,7 @@ export class LoginService {
     let t = localStorage.getItem('authToken');
     if (t){
       let user=JSON.parse(atob(t));
-      this.userAuthentificated={username: user.username, roles : user.roles};
+      this.userAuthentificated={id: user.id, username: user.username, roles : user.roles};
       this.isAuthentificated=true;
       this.token=t;
     }
@@ -57,6 +59,10 @@ export class LoginService {
     this.isAuthentificated=false;
     this.token=undefined;
     this.userAuthentificated=undefined;
+  }
+  //https://localhost:16550/API/Orgas/5
+  getUser(id:number){
+    return this.http.get<Organisateur>("https://localhost:16550/API/Orgas/"+id);
   }
   
 }

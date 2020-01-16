@@ -1,3 +1,4 @@
+import { AddCalandarService } from './service/add-calandar.service';
 import { LoginService } from './service/login.service';
 import { UserService } from './service/user.service';
 import { HttpModule } from '@angular/http';
@@ -38,7 +39,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'Calendar', component:CalendarComponent },
     ])
   ],
-  providers: [UserService, LoginService],
+  providers: [UserService, LoginService,AddCalandarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

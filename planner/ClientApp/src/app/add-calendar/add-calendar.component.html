@@ -6,32 +6,32 @@
             <div class="form-group">
                 <p>
                     <label for="titre" class="control-label">Titre de l'événement</label>
-                    <input type="text" name="titre" [(ngModel)]="titre" class="form-control">
+                    <input type="text" name="titre" [(ngModel)]="addCalandar.titre" class="form-control">
                 </p>
                 <p>
                     <label for="description" class="control-label">Description de l'événement</label>
-                    <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="description"
+                    <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="addCalandar.description"
                         class="form-control"></textarea>
                 </p>
                 <p>
                     <label for="dateEv" class="control-label">Date de l'événement</label>
-                    <input type="date" [(ngModel)]="dateEvent" name="dateEv" class="form-control">
+                    <input type="date" [(ngModel)]="addCalandar.dateHeureEvenement" name="dateEv" class="form-control">
                 </p>
                 <p>
                     <label for="postal" class="control-label">Code Postal</label>
-                    <input type="text" (change)="search()" name="postal" [(ngModel)]="codePostal" class="form-control">
+                    <input type="text" (change)="search()" name="postal" [(ngModel)]="addCalandar.cp" class="form-control">
                 </p>
                 <p>
                     <label for="ville" class="control-label">Ville</label>
-                    <input type="text" name="ville" readonly=true [(ngModel)]="ville" class="form-control">
+                    <input type="text" name="ville" readonly=true [(ngModel)]="addCalandar.ville" class="form-control">
                 </p>
                 <p>
                     <label for="adresse" class="control-label">Adresse</label>
-                    <input type="text" name="adresse" id="adresse" [(ngModel)]="adresse" class="form-control">
+                    <input type="text" name="adresse" id="adresse" [(ngModel)]="addCalandar.adresse" class="form-control">
                 </p>
                 <p>
                     <label for="tag" class="control-label">Tags</label>
-                    <input type="text" name="tags" id="tags" [(ngModel)]="tag" class="form-control">
+                    <input type="text" name="tags" id="tags" [(ngModel)]="addCalandar.tags" class="form-control">
                 </p>
                 <button (click)="addData()" class="btn btn-primary">Ajouter</button>
             </div>

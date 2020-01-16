@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ListCalendarComponent implements OnInit {
 
-  private listeEvent;
+  public listeEvent;
   constructor(private http : HttpClient, public loginService:LoginService) { }
 
   ngOnInit() {
@@ -19,8 +19,9 @@ export class ListCalendarComponent implements OnInit {
   }
 
   private getEvents(){
-    this.http.get("http://localhost:51764/api/Events").subscribe( data => {
+    this.http.get("https://localhost:16550/API/Events").subscribe( data => {
       this.listeEvent = data;
+      console.log(this.listeEvent);
     });
   }
  
