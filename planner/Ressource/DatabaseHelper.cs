@@ -16,15 +16,18 @@ namespace planner.Ressource
         public bool InsertObjToDB<T>(object o)
         {
             AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
-
+            string query;
             switch (typeof(T).Name)
             {
                 case ("Evenement"):
                     Evenement e = o as Evenement;
-                    string query = string.Format("INSERT INTO dbo.Evenement (Adresse,Cp,DateHeureCreation,DateHeureEvenement,Description,OrganisateurIdOrga,Tags,Titre,Ville) values ('{0}','{1}','{2}','{3}','{4}',{5},'{6}','{7}','{8}')", e.Adresse, e.Cp, e.DateHeureCreation.ToString().Substring(0, 10), e.DateHeureEvenement.ToString().Substring(0,10), e.Description, 1, e.Tags, e.Titre, e.Ville);
+                    query = string.Format("INSERT INTO dbo.Evenement (Adresse,Cp,DateHeureCreation,DateHeureEvenement,Description,OrganisateurIdOrga,Tags,Titre,Ville) values ('{0}','{1}','{2}','{3}','{4}',{5},'{6}','{7}','{8}')", e.Adresse, e.Cp, e.DateHeureCreation.ToString().Substring(0, 10), e.DateHeureEvenement.ToString().Substring(0,10), e.Description, 1, e.Tags, e.Titre, e.Ville);
                     context.Database.ExecuteSqlCommand(query);
                     break;
                 case ("Organisateur"):
+                    Organisateur or = o as Organisateur;
+                    query = string.Format("INSERT INTO dbo.Organisateur (Login, Nom, Prenom, Email, Tel, Port, DateInscription, NomOrganisation, EvenementsOrganises) VALUE ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')", or.Login, or.Nom, , or.Prenom, or.Email, or.Tel, or.Port, or.DateInscription.ToString().Substring(0, 10), or.NomOrganisation, or.EvenementsOrganises);
+                    context.Database.ExecuteSqlCommand(query);
                     break;
                 case ("Visiteur"):
                     break;

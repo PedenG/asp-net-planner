@@ -19,7 +19,7 @@ namespace planner.Models
         public string Tel { get; set; }
         public string Port { get; set; }
 
-        public DateTime DateInscription { get; set; }
+        public string DateInscription { get; set; }
         public string NomOrganisation { get; set; }
         [JsonIgnore]
         public List<Evenement> EvenementsOrganises{ get; set; }
