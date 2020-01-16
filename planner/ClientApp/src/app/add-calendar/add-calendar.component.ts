@@ -27,8 +27,8 @@ export class AddCalendarComponent implements OnInit {
     this.loginService.loadUser();   
     this.loginService.getUser(this.loginService.userAuthentificated.id)
     .subscribe(data => {
-      this.organisateur = data ['0'];
-      console.log(this.addCalandar.organisateur);
+      this.addCalandar.organisateur= data;
+     
     }, err => {
       console.log(err);
     });
