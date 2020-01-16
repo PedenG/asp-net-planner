@@ -28,7 +28,7 @@ namespace planner.Models
         }
         public static List<Visisteur> GetVisits()
         {
-            AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
+            AspDbContext context = new AspDbContextFactory().CreateDbC ontext(null);
             return context.Visisteurs.ToList();
         }
     }
