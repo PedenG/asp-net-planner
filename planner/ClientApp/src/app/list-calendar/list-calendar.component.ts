@@ -1,4 +1,6 @@
+import { LoginService } from './../service/login.service';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-calendar',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCalendarComponent implements OnInit {
 
-  constructor() { }
+  private listeEvent;
+  constructor(private http : HttpClient, public loginService:LoginService) { }
 
   ngOnInit() {
+    this.getEvents();
+    this.loginService.loadUser();
+   
   }
+
+  private getEvents(){
+    this.http.get("http://localhost:51764/api/Events").subscribe( data => {
+      this.listeEvent = data;
+    });
+  }
+ 
 
 }

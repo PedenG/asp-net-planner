@@ -21,6 +21,7 @@ namespace planner.Models
 
         public DateTime DateInscription { get; set; }
         public string NomOrganisation { get; set; }
+   
         public List<Evenement> EvenementsOrganises{ get; set; }
 
         public Organisateur()
