@@ -93,6 +93,14 @@ namespace planner.Controllers
             return dbHelper.GetObjToDB(new Organisateur());
         }
 
+        [HttpGet("Orgas/{id}/Events")]
+        [Produces("application/json")]
+        public object OrgaEvents(int id)
+        {
+            DatabaseHelper dbHelper = new DatabaseHelper();
+            return (dbHelper.GetObjToDB(new Evenement()) as List<Evenement>).Where(x=>x.OrganisateurIdOrga == id).ToList();
+        }
+
         [HttpGet("Orgas/{id}")]
         [Produces("application/json")]
         public object Orga(int id)

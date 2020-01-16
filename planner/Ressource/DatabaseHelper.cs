@@ -26,7 +26,7 @@ namespace planner.Ressource
                     break;
                 case ("Organisateur"):
                     Organisateur or = o as Organisateur;
-                    query = string.Format("INSERT INTO dbo.Organisateur (Login, Nom, Prenom, Email, Tel, Port, DateInscription, NomOrganisation, EvenementsOrganises) VALUE ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')", or.Login, or.Nom, , or.Prenom, or.Email, or.Tel, or.Port, or.DateInscription.ToString().Substring(0, 10), or.NomOrganisation, or.EvenementsOrganises);
+                    query = string.Format("INSERT INTO dbo.Organisateur (Login, Nom, Prenom, Email, Tel, Port, DateInscription, NomOrganisation, EvenementsOrganises) VALUE ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}')", or.Login, or.Nom, or.Prenom, or.Email, or.Tel, or.Port, or.DateInscription.ToString().Substring(0, 10), or.NomOrganisation, or.EvenementsOrganises);
                     context.Database.ExecuteSqlCommand(query);
                     break;
                 case ("Visiteur"):
