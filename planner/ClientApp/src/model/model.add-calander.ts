@@ -2,7 +2,7 @@ import { Organisateur } from "./model.organisateur"
 
  export class Addcalander {
 
-    organisateur: Organisateur=new Organisateur();
+    OrganisateurIdOrga: number=0;
     titre: String="";
     description: String="";
     dateHeureCreation: Date=new Date();

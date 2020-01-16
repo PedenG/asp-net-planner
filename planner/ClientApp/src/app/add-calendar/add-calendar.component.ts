@@ -25,13 +25,7 @@ export class AddCalendarComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.loadUser();   
-    this.loginService.getUser(this.loginService.userAuthentificated.id)
-    .subscribe(data => {
-      this.addCalandar.organisateur= data;
-     
-    }, err => {
-      console.log(err);
-    });
+    this.addCalandar.OrganisateurIdOrga=this.loginService.userAuthentificated.id;
   }
 
   private search() {
