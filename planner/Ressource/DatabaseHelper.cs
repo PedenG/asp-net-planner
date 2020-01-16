@@ -29,8 +29,6 @@ namespace planner.Ressource
                 case ("Visiteur"):
                     break;
             }
-        
-            var test = context.Add(o);
             if(context.SaveChanges() == -1)
             {
                 return false;
