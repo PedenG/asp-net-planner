@@ -77,9 +77,9 @@ namespace planner.Controllers
                     return "error";
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                return ex.Message;
             }
             return "error";
         }

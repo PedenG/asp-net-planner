@@ -11,6 +11,7 @@ namespace planner.Models
     {
         [Key]
         public int IdEvent { get; set; }
+        public int OrganisateurIdOrga { get; set; }
         public Organisateur Organisateur { get; set; }
         public string Titre { get; set; }
         public string Description { get; set; }
