@@ -18,7 +18,6 @@ namespace planner.Controllers
         //===========================================================================================
         //Evenement
         //==========================================================================================
-        // GET api/fdp
         [HttpGet("Events")]
         [Produces("application/json")]
         public object GetEvents()
@@ -77,17 +76,15 @@ namespace planner.Controllers
                     return "error";
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                return ex.Message;
             }
-            return "error";
         }
 
         //===========================================================================================
         //Organisateur
         //==========================================================================================
-        // GET api/fdp
         [HttpGet("Orgas")]
         [Produces("application/json")]
         public object GetOrga()
@@ -145,11 +142,10 @@ namespace planner.Controllers
                     return "error";
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                return ex.Message;
             }
-            return "error";
         }
         public string GetBody()
         {

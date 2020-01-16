@@ -11,18 +11,17 @@ namespace planner.Models
     {
         [Key]
         public int IdEvent { get; set; }
+        public int? OrganisateurIdOrga { get; set; }
+        
         public Organisateur Organisateur { get; set; }
         public string Titre { get; set; }
         public string Description { get; set; }
-        public DateTime DateHeureCreation{ get; set; }
-        public DateTime DateHeureEvenement{ get; set; }
+        public string DateHeureCreation{ get; set; }
+        public string DateHeureEvenement { get; set; }
         public string Ville { get; set; }
         public string Cp { get; set; }
         public string Adresse { get; set; }
-        // tag1;tag2;tag3;...
         public string Tags { get; set; }
-
-
 
 
 
@@ -31,7 +30,7 @@ namespace planner.Models
 
         public Evenement()
         {
-            DateHeureCreation = DateTime.Now;
+            DateHeureCreation = DateTime.Now.ToString().Substring(0,10);
             //Evenement.EnoyerEvenement(new Evenement());
         }
         public static List<Evenement> GetEvents()
