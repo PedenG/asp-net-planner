@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using planner.Models;
 namespace planner.Ressource
 {
@@ -11,10 +12,23 @@ namespace planner.Ressource
         {
 
         }
+
         public bool InsertObjToDB<T>(object o)
         {
             AspDbContext context = new AspDbContextFactory().CreateDbContext(null);
-            var test = context.Add(o);
+
+            switch (typeof(T).Name)
+            {
+                case ("Evenement"):
+                    Evenement e = o as Evenement;
+                    string query = string.Format("INSERT INTO dbo.Evenement (Adresse,Cp,DateHeureCreation,DateHeureEvenement,Description,OrganisateurIdOrga,Tags,Titre,Ville) values ('{0}','{1}','{2}','{3}','{4}',{5},'{6}','{7}','{8}')", e.Adresse, e.Cp, e.DateHeureCreation.ToString().Substring(0, 10), e.DateHeureEvenement.ToString().Substring(0,10), e.Description, 1, e.Tags, e.Titre, e.Ville);
+                    context.Database.ExecuteSqlCommand(query);
+                    break;
+                case ("Organisateur"):
+                    break;
+                case ("Visiteur"):
+                    break;
+            }
             if(context.SaveChanges() == -1)
             {
                 return false;

@@ -39,7 +39,7 @@ namespace planner
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organisateur>().ToTable("Organisateur");
-            modelBuilder.Entity<Evenement>().ToTable("Evenement");
+            modelBuilder.Entity<Evenement>().ToTable("Evenement").HasOne(b => b.Organisateur).WithMany(i => i.EvenementsOrganises).HasForeignKey(b => b.OrganisateurIdOrga);;
             modelBuilder.Entity<Visisteur>().ToTable("Visisteur");
         }
     }
